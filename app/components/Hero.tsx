@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon } from "./Icon";
+import { ConsultTrigger } from "./ConsultTrigger";
 import { STATS } from "./data";
 
 export function Hero() {
@@ -36,14 +37,11 @@ export function Hero() {
           cloud built around how you actually work.
         </p>
         <div className="mt-8.5 flex flex-wrap justify-center gap-3.5">
-          <Link
-            href="#contact"
-            className="rounded-[11px] bg-accent px-6.5 py-3.5 text-[15px] font-semibold text-white no-underline transition-[filter] hover:brightness-110"
-          >
+          <ConsultTrigger className="rounded-[11px] bg-accent px-6.5 py-3.5 text-[15px] font-semibold text-white transition-[filter] hover:brightness-110">
             Book a consultation
-          </Link>
+          </ConsultTrigger>
           <Link
-            href="#services"
+            href="#capabilities"
             className="inline-flex items-center gap-2 rounded-[11px] border border-white/22 px-6.5 py-3.5 text-[15px] font-semibold text-foreground no-underline transition-colors hover:bg-white/6"
           >
             Explore services <Icon name="arrow_forward" className="text-[18px]" />

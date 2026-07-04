@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { ConsultProvider } from "./components/ConsultContext";
+import { ConsultModal } from "./components/ConsultModal";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -37,7 +39,10 @@ export default function RootLayout({
       className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-page text-foreground">
-        {children}
+        <ConsultProvider>
+          {children}
+          <ConsultModal />
+        </ConsultProvider>
       </body>
     </html>
   );

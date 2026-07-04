@@ -26,3 +26,18 @@ file with the steps above, then run:
 sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d haley365.com -d www.haley365.com
 ```
+
+## Consultation form email
+
+The "Book a consultation" modal POSTs to `app/api/consultation/route.ts`,
+which sends the request over SMTP (SMTP2GO, no auth — the deploy host's
+outbound IP must already be whitelisted there and outbound port 25 open,
+per the client-confirmed setup). Copy `.env.example` to `.env` on the
+instance and adjust only if the relay ever changes:
+
+```bash
+cp .env.example .env
+```
+
+pm2/`npm run start` picks up `.env` automatically via Next.js — no
+restart-time env vars to set manually unless you override the defaults.

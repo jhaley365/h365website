@@ -1,9 +1,8 @@
-import Link from "next/link";
+import { ConsultTrigger } from "./ConsultTrigger";
 
 export function Cta() {
   return (
     <section
-      id="contact"
       style={{
         background:
           "radial-gradient(600px 300px at 50% 120%, rgba(59,130,246,0.25), transparent 70%), #0c111e",
@@ -17,12 +16,9 @@ export function Cta() {
           Let&apos;s talk about where AI, security, and cloud can take your
           business.
         </p>
-        <Link
-          href="mailto:hello@haley365.com"
-          className="inline-block rounded-xl bg-accent px-7.5 py-4 text-[15.5px] font-semibold text-white no-underline transition-[filter] hover:brightness-110"
-        >
+        <ConsultTrigger className="inline-block rounded-xl bg-accent px-7.5 py-4 text-[15.5px] font-semibold text-white transition-[filter] hover:brightness-110">
           Book a consultation
-        </Link>
+        </ConsultTrigger>
       </div>
     </section>
   );

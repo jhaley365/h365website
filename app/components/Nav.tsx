@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { ConsultTrigger } from "./ConsultTrigger";
 
 const LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Solutions", href: "#solutions" },
+  { label: "Services", href: "#capabilities" },
+  { label: "Solutions", href: "#capabilities" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export function Nav() {
@@ -23,6 +23,9 @@ export function Nav() {
               {link.label}
             </Link>
           ))}
+          <ConsultTrigger className="text-nav-link no-underline transition-colors hover:text-white">
+            Contact
+          </ConsultTrigger>
         </nav>
         <div className="flex shrink-0 items-center gap-2.5 md:gap-3.5">
           <Link
@@ -31,12 +34,9 @@ export function Nav() {
           >
             Client Login
           </Link>
-          <Link
-            href="#get-started"
-            className="shrink-0 rounded-[9px] bg-accent px-4.5 py-2.5 text-[13.5px] font-semibold whitespace-nowrap text-white no-underline transition-[filter] hover:brightness-110"
-          >
+          <ConsultTrigger className="shrink-0 rounded-[9px] bg-accent px-4.5 py-2.5 text-[13.5px] font-semibold whitespace-nowrap text-white transition-[filter] hover:brightness-110">
             Get started
-          </Link>
+          </ConsultTrigger>
         </div>
       </div>
     </header>

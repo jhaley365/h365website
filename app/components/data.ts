@@ -32,3 +32,30 @@ export const WHY_POINTS = [
   "SMB-focused, senior-level engineering",
   "Transparent reporting through your client portal",
 ];
+
+export const ABOUT_VALUES = [
+  {
+    icon: "verified_user",
+    title: "Security in our DNA",
+    body: "Every engagement starts from a hardened, audit-ready posture — not an afterthought bolted on later.",
+  },
+  {
+    icon: "engineering",
+    title: "Senior engineers, not tickets",
+    body: "You work with experienced people who know your environment — no endless tiers, no handoffs into a void.",
+  },
+  {
+    icon: "handshake",
+    title: "Partners for the long haul",
+    body: "We measure success by how long clients stay and how much they grow with us — transparently, through your portal.",
+  },
+];
+
+export const CONSULT_EMAIL = "contact@haley365.com";
+export const CONSULT_INTERESTS = [
+  "General inquiry",
+  "AI & custom applications",
+  "Managed security",
+  "Cloud infrastructure",
+  "Managed IT & service desk",
+];

@@ -3,7 +3,7 @@ import { CAPABILITIES } from "./data";
 
 export function Capabilities() {
   return (
-    <section id="services" className="mx-auto max-w-[1320px] px-6 pt-4 pb-20 md:px-12">
+    <section id="capabilities" className="mx-auto max-w-[1320px] px-6 pt-4 pb-20 md:px-12">
       <div className="grid grid-cols-1 gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
         {CAPABILITIES.map((capability) => (
           <div
