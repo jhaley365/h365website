@@ -20,8 +20,8 @@ export function Logo() {
         <span className="font-display text-[17px] font-extrabold tracking-[0.16em] text-white">
           HALEY365
         </span>
-        <span className="mt-1 text-[8.5px] tracking-[0.26em] text-muted-dark">
-          INFORMATION SECURITY
+        <span className="mt-1 text-[8.5px] tracking-[0.24em] text-muted-dark">
+          ALWAYS-ON IT & SECURITY
         </span>
       </span>
     </Link>
