@@ -20,8 +20,8 @@ export function About() {
           <p className="mb-4.5 text-base leading-[1.75] text-body">
             For over 20 years, Haley365 has been the technology partner small
             and mid-sized businesses rely on. Our team brings more than 30
-            years of combined IT experience across networking, cloud, and
-            security — and a security-first mindset shapes everything we do.
+            years of IT experience across networking, cloud, and security —
+            and a security-first mindset shapes everything we do.
           </p>
           <p className="text-base leading-[1.75] text-body">
             We&apos;re also a company that specializes in custom solutions.

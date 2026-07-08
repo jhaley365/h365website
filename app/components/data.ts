@@ -35,7 +35,7 @@ export const WHY_POINTS = [
 
 export const ABOUT_STATS = [
   { value: "20+", label: "Years in business" },
-  { value: "30+", label: "Years combined IT experience" },
+  { value: "30+", label: "Years IT experience" },
   { value: "15+", label: "Years building custom applications" },
 ];
 
