@@ -33,22 +33,36 @@ export const WHY_POINTS = [
   "Transparent reporting through your client portal",
 ];
 
+export const ABOUT_STATS = [
+  { value: "20+", label: "Years in business" },
+  { value: "30+", label: "Years combined IT experience" },
+  { value: "15+", label: "Years building custom applications" },
+];
+
 export const ABOUT_VALUES = [
   {
     icon: "verified_user",
     title: "Security in our DNA",
-    body: "Every engagement starts from a hardened, audit-ready posture — not an afterthought bolted on later.",
+    body: "SANS-trained and certified, we start every engagement from a hardened posture — not an afterthought bolted on later.",
   },
   {
     icon: "engineering",
-    title: "Senior engineers, not tickets",
-    body: "You work with experienced people who know your environment — no endless tiers, no handoffs into a void.",
+    title: "Certified, senior engineers",
+    body: "Certified across networking, AWS, Microsoft Server, and Microsoft 365 — you work with experienced people, not endless ticket tiers.",
   },
   {
-    icon: "handshake",
-    title: "Partners for the long haul",
-    body: "We measure success by how long clients stay and how much they grow with us — transparently, through your portal.",
+    icon: "terminal",
+    title: "Custom solutions specialists",
+    body: "15+ years building custom applications means we solve the problem in front of you — not the one the software vendor assumed.",
   },
+];
+
+export const ABOUT_CERTS = [
+  { icon: "lan", label: "Networking" },
+  { icon: "cloud", label: "Amazon AWS" },
+  { icon: "dns", label: "Microsoft Server" },
+  { icon: "mail", label: "Microsoft 365" },
+  { icon: "shield", label: "SANS Cybersecurity" },
 ];
 
 export const CONSULT_EMAIL = "contact@haley365.com";
