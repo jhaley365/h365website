@@ -28,12 +28,14 @@ export function Nav() {
           </ConsultTrigger>
         </nav>
         <div className="flex shrink-0 items-center gap-2.5 md:gap-3.5">
-          <Link
-            href="#client-login"
+          <a
+            href="https://portal.haley365.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden shrink-0 rounded-[9px] border border-white/20 px-4 py-2.5 text-[13.5px] font-semibold whitespace-nowrap text-foreground no-underline transition-colors hover:bg-white/6 sm:inline-block"
           >
             Client Login
-          </Link>
+          </a>
           <ConsultTrigger className="shrink-0 rounded-[9px] bg-accent px-4.5 py-2.5 text-[13.5px] font-semibold whitespace-nowrap text-white transition-[filter] hover:brightness-110">
             Get started
           </ConsultTrigger>
