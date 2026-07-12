@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="266" height="72" viewBox="0 0 266 72" fill="none">
+  <g transform="translate(8,12)">
+    <g transform="rotate(-28 24 24)">
+      <ellipse cx="24" cy="24" rx="18" ry="8.5" stroke="#2f6bff" stroke-width="2.2" fill="none"></ellipse>
+      <circle cx="42" cy="24" r="3.2" fill="#2f6bff"></circle>
+    </g>
+    <circle cx="24" cy="24" r="4.4" fill="#0c111e"></circle>
+  </g>
+  <text x="72" y="40" font-family="Archivo, sans-serif" font-weight="800" font-size="27" letter-spacing="4" fill="#0c111e">HALEY365</text>
+  <text x="73" y="55" font-family="&#39;IBM Plex Sans&#39;, sans-serif" font-weight="500" font-size="8.4" letter-spacing="3" fill="#5b6675">ALWAYS-ON IT &amp; SECURITY</text>
+</svg>
