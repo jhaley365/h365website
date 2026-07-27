@@ -25,7 +25,7 @@ function buildManagementSummaryEmail({ companyName, todayDisplay, rows }) {
   const html = `
 <!doctype html>
 <html>
-  <body style="margin:0; padding:0; background:#f6f8fb; font-family: -apple-system, Arial, sans-serif; color:#0c111e;">
+  <body style="margin:0; padding:0; background:#f6f8fb; font-family: -apple-system, Arial, sans-serif; color:#111827;">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="padding:24px;">
       <tr>
         <td align="center">
@@ -40,11 +40,11 @@ function buildManagementSummaryEmail({ companyName, todayDisplay, rows }) {
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-size:13px;">
                   <thead>
                     <tr>
-                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #0c111e; color:#5b6675;">Name</th>
-                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #0c111e; color:#5b6675;">Email</th>
-                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #0c111e; color:#5b6675;">Birth date</th>
-                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #0c111e; color:#5b6675;">Birthday today?</th>
-                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #0c111e; color:#5b6675;">Announcement sent</th>
+                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #111827; color:#5b6675;">Name</th>
+                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #111827; color:#5b6675;">Email</th>
+                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #111827; color:#5b6675;">Birth date</th>
+                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #111827; color:#5b6675;">Birthday today?</th>
+                      <th align="left" style="padding:8px 12px; border-bottom:2px solid #111827; color:#5b6675;">Announcement sent</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -21,7 +21,7 @@ module.exports = {
     user: process.env.SMTP_USER || '',
     password: process.env.SMTP_PASSWORD || '',
   },
-  mailFrom: required('MAIL_FROM', '"Haley365 HR" <hr@haley365.com>'),
+  mailFrom: required('MAIL_FROM', '"HR" <hr@example.com>'),
 
   birthdayAnnouncementTo: required('BIRTHDAY_ANNOUNCEMENT_TO', ''),
   managementSummaryTo: required('MANAGEMENT_SUMMARY_TO', ''),
@@ -30,5 +30,5 @@ module.exports = {
   sendHour: Number(process.env.SEND_HOUR || 8),
   sendMinute: Number(process.env.SEND_MINUTE || 0),
 
-  companyName: required('COMPANY_NAME', 'Haley365'),
+  companyName: required('COMPANY_NAME', 'Your Company'),
 };
