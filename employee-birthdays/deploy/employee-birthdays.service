@@ -1,0 +1,28 @@
+[Unit]
+Description=Employee Birthdays app
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=birthdays
+Group=birthdays
+WorkingDirectory=/opt/employee-birthdays
+Environment=NODE_ENV=production
+# dotenv (loaded inside src/config.js) reads /opt/employee-birthdays/.env
+# automatically based on WorkingDirectory above — nothing else to configure here.
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# Hardening: read-only system, no new privileges, only the app's own data
+# directory (the SQLite db) is writable.
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/employee-birthdays/data
+
+[Install]
+WantedBy=multi-user.target

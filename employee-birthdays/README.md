@@ -98,4 +98,8 @@ desktop rendering engine does not support inline SVG images in HTML email.
   Make sure that path is on persistent storage that survives deploys/restarts.
 - Set `NODE_ENV=production` so session cookies are marked `secure` (requires
   serving over HTTPS, e.g. behind a reverse proxy/load balancer that
-  terminates TLS).
+  terminates TLS) and so Express trusts the proxy's `X-Forwarded-Proto` header.
+
+For a full step-by-step guide to deploying this on an AWS EC2 instance
+(systemd service, nginx + Let's Encrypt TLS, firewall rules, updates,
+backups), see **[deploy/README.md](deploy/README.md)**.

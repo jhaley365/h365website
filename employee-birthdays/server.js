@@ -12,6 +12,14 @@ const { startScheduler } = require('./src/services/scheduler');
 
 const app = express();
 
+// Required in production: the app sits behind an nginx reverse proxy that
+// terminates TLS, so Express must trust its X-Forwarded-Proto header to know
+// the original request was HTTPS. Without this, secure session cookies never
+// get set behind the proxy and login silently breaks. See deploy/README.md.
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
