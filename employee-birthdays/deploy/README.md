@@ -17,25 +17,55 @@ everything else is the same.)
 - DNS: point an A record (e.g. `birthdays.haley365.com`) at the instance's
   public IP/Elastic IP before requesting a TLS certificate in step 4.
 
-## 2. Get the code onto the instance
+## 2. Give the instance read-only access to the repo (deploy key)
+
+Since `h365website` is private, the instance needs its own credential to
+`git clone`/`git pull`. Use a **deploy key** — an SSH key pair scoped to just
+this one repo, read-only, not tied to anyone's personal GitHub account. That
+way if the instance is ever compromised, the blast radius is "can read this
+one repo," not "can push anywhere jeff@haley365.com can."
+
+On the instance:
 
 ```bash
-sudo mkdir -p /opt/employee-birthdays
-sudo chown $(whoami) /opt/employee-birthdays
-git clone --branch claude/employee-birthday-announcements-4ym3ew \
-  https://github.com/jhaley365/h365website.git /tmp/h365website
-cp -r /tmp/h365website/employee-birthdays/. /opt/employee-birthdays/
-rm -rf /tmp/h365website
+sudo ssh-keygen -t ed25519 -C "employee-birthdays-ec2" -f /root/.ssh/h365website_deploy -N ""
+sudo cat /root/.ssh/h365website_deploy.pub
 ```
 
-(Or `scp`/`rsync` the `employee-birthdays/` folder over if you'd rather not
-put a git checkout on the box. Once this is merged to your default branch,
-swap `--branch ...` for a normal clone of that branch.)
+Copy that public key. In GitHub: **h365website repo → Settings → Deploy
+keys → Add deploy key**. Paste it in, leave **"Allow write access" unchecked**
+(read-only — the instance only ever needs to pull), and save.
 
-## 3. Run the setup script
+Then tell git on the instance to use that key for this repo:
 
 ```bash
-cd /opt/employee-birthdays
+sudo tee -a /root/.ssh/config >/dev/null <<'EOF'
+Host github-h365website
+  HostName github.com
+  User git
+  IdentityFile /root/.ssh/h365website_deploy
+  IdentitiesOnly yes
+EOF
+sudo chmod 600 /root/.ssh/config
+```
+
+## 3. Clone the repo and run the setup script
+
+```bash
+sudo mkdir -p /opt/h365website
+sudo git clone github-h365website:jhaley365/h365website.git /opt/h365website
+cd /opt/h365website
+sudo git checkout claude/employee-birthday-announcements-4ym3ew
+```
+
+(Once this branch is merged to your default branch, `git checkout main`
+instead — see step 6.)
+
+The actual app lives in the `employee-birthdays/` subfolder of that
+checkout:
+
+```bash
+cd /opt/h365website/employee-birthdays
 sudo bash deploy/setup.sh
 ```
 
@@ -46,7 +76,7 @@ and registers the systemd service (but does not start it yet).
 Then configure it:
 
 ```bash
-sudo -u birthdays nano /opt/employee-birthdays/.env
+sudo -u birthdays nano /opt/h365website/employee-birthdays/.env
 ```
 
 Fill in at minimum: `SESSION_SECRET`, `SMTP_*`, `MAIL_FROM`,
@@ -54,7 +84,7 @@ Fill in at minimum: `SESSION_SECRET`, `SMTP_*`, `MAIL_FROM`,
 password hash and paste it in as `ADMIN_PASSWORD_HASH`:
 
 ```bash
-cd /opt/employee-birthdays && sudo -u birthdays npm run hash-password
+cd /opt/h365website/employee-birthdays && sudo -u birthdays npm run hash-password
 ```
 
 Start the app:
@@ -90,28 +120,39 @@ loads over HTTPS.
   as their birth date.
 - Run the job on demand instead of waiting for 8 AM:
   ```bash
-  cd /opt/employee-birthdays && sudo -u birthdays npm run run-daily-job
+  cd /opt/h365website/employee-birthdays && sudo -u birthdays npm run run-daily-job
   ```
   Check that both the announcement and the management summary land in the
   right inboxes, then delete the test employee.
 
-## Updating the app later
+## 6. Updating the app later
+
+Because step 3 set up a real, persistent git checkout (not a one-off copy),
+future updates are just a pull. `deploy/update.sh` wraps the whole sequence:
 
 ```bash
-cd /tmp && git clone --branch <branch> https://github.com/jhaley365/h365website.git
-sudo systemctl stop employee-birthdays
-rsync -a --exclude .env --exclude data --exclude node_modules \
-  /tmp/h365website/employee-birthdays/ /opt/employee-birthdays/
-cd /opt/employee-birthdays && sudo -u birthdays npm ci --omit=dev
-sudo systemctl start employee-birthdays
-rm -rf /tmp/h365website
+cd /opt/h365website/employee-birthdays
+sudo bash deploy/update.sh
 ```
 
-`.env` and `data/` (the SQLite database) are excluded so redeploys never
-touch your configuration or employee records.
+This fetches the branch currently checked out, hard-resets the working tree
+to match `origin` (safe here — `.env` and `data/` are gitignored/untracked,
+so they're untouched; there should never be uncommitted local edits on a
+deploy checkout), reinstalls dependencies, fixes file ownership, and restarts
+the service.
+
+To switch which branch is tracked (e.g. once this work merges to `main`),
+pass it explicitly one time:
+
+```bash
+sudo bash deploy/update.sh main
+```
+
+After that, plain `sudo bash deploy/update.sh` keeps pulling `main`.
 
 ## Backups
 
-The only state that matters is `/opt/employee-birthdays/data/birthdays.db`.
-Snapshot the EBS volume periodically, or just cron a copy of that file
-somewhere durable (e.g. S3) — it's a single small SQLite file.
+The only state that matters is
+`/opt/h365website/employee-birthdays/data/birthdays.db`. Snapshot the EBS
+volume periodically, or just cron a copy of that file somewhere durable
+(e.g. S3) — it's a single small SQLite file.

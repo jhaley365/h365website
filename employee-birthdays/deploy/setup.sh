@@ -2,7 +2,7 @@
 # One-time (but safe to re-run) setup for a fresh Ubuntu EC2 instance.
 #
 # Usage: run this AS ROOT (or via sudo) from inside the app checkout, e.g.:
-#   cd /opt/employee-birthdays
+#   cd /opt/h365website/employee-birthdays   # (or wherever you cloned it)
 #   sudo bash deploy/setup.sh
 #
 # It installs Node.js, creates a dedicated low-privilege system user, installs
