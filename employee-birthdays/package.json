@@ -1,0 +1,28 @@
+{
+  "name": "employee-birthdays",
+  "version": "1.0.0",
+  "description": "Internal tool that tracks employee birthdays and emails a birthday announcement + daily management summary.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "hash-password": "node scripts/hash-password.js",
+    "generate-images": "node scripts/generate-birthday-images.js",
+    "run-daily-job": "node scripts/run-daily-job.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^13.0.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^6.0.1",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "express-session": "^1.18.0",
+    "node-cron": "^4.6.0",
+    "nodemailer": "^9.0.3"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}
